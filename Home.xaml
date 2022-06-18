@@ -1,0 +1,49 @@
+﻿<Page
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Name="Home1" x:Class="SignalX.Home"
+        mc:Ignorable="d"
+        
+        Title="Signal X"
+        Height="370"
+        Width="730"
+        Background="#111213"
+        RenderOptions.BitmapScalingMode="HighQuality">
+    <Grid x:Name="Games" HorizontalAlignment="Left" VerticalAlignment="Top" Width="730" Height="370">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="Game1" Grid.Row="0" Grid.Column="0" Margin="10" PreviewMouseDown="game1Click">
+            <Rectangle x:Name="gameImage1" VerticalAlignment="Top" Height="103" Cursor="Hand">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Resources/phasmophobiaimage1.jpg" Stretch="UniformToFill" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Grid>
+                <Rectangle HorizontalAlignment="Left" Height="35" Margin="0,68,0,0" VerticalAlignment="Top" Width="224" Fill="#7F000000"/>
+                <Label x:Name="gameName1" 
+                Content="Phasmophobia"
+                HorizontalAlignment="Left"
+                Margin="5,72,0,6" 
+                VerticalAlignment="Center" 
+                HorizontalContentAlignment="Left"
+                Width="Auto" FontFamily="Product Sans" FontSize="21" Cursor="Hand" Foreground="White"/>
+                <Label x:Name="gameSize1" 
+                Content="6.28 GB"
+                HorizontalAlignment="Right"
+                Margin="0,77,5,8" 
+                VerticalAlignment="Center" 
+                HorizontalContentAlignment="Right"
+                VerticalContentAlignment="Center"
+                Width="Auto" FontFamily="Product Sans" FontSize="16" Cursor="Hand" Foreground="White"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="Game2" Grid.Row="0" Grid.Column="1" Margin="10" PreviewMouseDown="game2Click"/>
+        <Grid x:Name="Game3" Grid.Row="1" Grid.Column="0" Margin="10" PreviewMouseDown="game3Click"/>
+    </Grid>
+</Page>

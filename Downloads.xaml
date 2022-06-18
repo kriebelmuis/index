@@ -1,0 +1,168 @@
+﻿<Page
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/" x:Name="Downloads1" x:Class="SignalX.Downloads"
+        mc:Ignorable="d"
+        
+        Title="Signal X"
+        Height="370"
+        Width="730"
+        Background="#111213"
+        RenderOptions.BitmapScalingMode="HighQuality"
+        Unloaded="downloadClosed">
+    <Grid x:Name="Window">
+        <Grid x:Name="Download1" Margin="10,10,10,250">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+            <Rectangle x:Name="background1" 
+                HorizontalAlignment="Left" 
+                Height="110" 
+                VerticalAlignment="Top"
+                Width="710" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <Rectangle.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.OpacityMask>
+                <Rectangle.Fill>
+                    <ImageBrush x:Name="image1" ImageSource="Resources/rustimage2.jpg" Stretch="UniformToFill"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <ui:ProgressBar x:Name="progressBar" 
+                IsIndeterminate="True" 
+                Margin="0,56,0,0" 
+                Value="0" 
+                RenderTransformOrigin="0.5,0.5" 
+                BorderBrush="White" 
+                Foreground="#005fb8" 
+                Background="White" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="2"/>
+            <Label x:Name="gameName1"
+                Content="Name"
+                HorizontalAlignment="Left"
+                Margin="5,5,0,0" 
+                VerticalAlignment="Top" 
+                HorizontalContentAlignment="Left"
+                Width="Auto" FontFamily="Product Sans" FontSize="28" Foreground="White" Grid.ColumnSpan="2"/>
+            <Label x:Name="gameInfo1"
+                Content="Preparing"
+                HorizontalAlignment="Left"
+                Margin="5,44,0,0" 
+                VerticalAlignment="Top" 
+                HorizontalContentAlignment="Left"
+                Width="Auto" FontFamily="Product Sans" FontSize="20" Foreground="White" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <Label x:Name="downloadProcentage1"
+                Content="0%"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Bottom" 
+                HorizontalContentAlignment="Left"
+                Width="Auto" 
+                FontFamily="/Signal X;component/Resources/#Product Sans Regular" 
+                FontSize="22" 
+                Foreground="White" 
+                Margin="5,0,0,4" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="2"/>
+            <Label x:Name="downloadEta1"
+                Content="00:00:00 left"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                HorizontalContentAlignment = "Right" 
+                FontFamily="Product Sans"
+                FontSize="20" 
+                Margin="0,5,5,0" 
+                Foreground="White" 
+                Grid.Column="1"/>
+            <Label x:Name="downloadSpeed1"
+                Content="0 mb/s"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                HorizontalContentAlignment = "Right"
+                FontFamily="Product Sans"
+                FontSize="18"
+                Margin="0,34,5,0" 
+                Foreground="White" 
+                Grid.RowSpan="2" 
+                Grid.Column="1"/>
+        </Grid>
+        <Button 
+            x:Name="stopButton"
+            HorizontalAlignment="Left" 
+            Height="45" 
+            Background="Transparent"
+            VerticalAlignment="Top" 
+            Width="45" 
+            Cursor="Hand" Margin="670,65,0,0" PreviewMouseLeftButtonDown="stopDownload">
+            <Button.Triggers>
+                <EventTrigger
+					RoutedEvent="UIElement.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard
+							Storyboard.TargetProperty="Background.Color">
+                            <ColorAnimation
+								Duration="0:0:0.1"
+								To="#55777777" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger
+					RoutedEvent="UIElement.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard
+							Storyboard.TargetProperty="Background.Color">
+                            <ColorAnimation
+			    				Duration="0:0:0.1"
+								To="#00777777" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+            <svgc:SvgViewbox x:Name="stop"
+                    Source="Resources/stop.svg" Height="15" Width="15"/>
+        </Button>
+        <Button 
+            x:Name="pauseButton"
+            HorizontalAlignment="Left" 
+            Height="45" 
+            Background="Transparent"
+            VerticalAlignment="Top" 
+            Width="45" 
+            Cursor="Hand" Margin="620,65,0,0" PreviewMouseLeftButtonDown="pauseDownload">
+            <Button.Triggers>
+                <EventTrigger
+					RoutedEvent="UIElement.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard
+							Storyboard.TargetProperty="Background.Color">
+                            <ColorAnimation
+								Duration="0:0:0.1"
+								To="#55777777" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger
+					RoutedEvent="UIElement.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard
+							Storyboard.TargetProperty="Background.Color">
+                            <ColorAnimation
+			    				Duration="0:0:0.1"
+								To="#00777777" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+            <svgc:SvgViewbox x:Name="pause"
+                    Source="Resources/pause.svg" Height="15" Width="15"/>
+        </Button>
+    </Grid>
+</Page>
