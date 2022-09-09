@@ -7,7 +7,6 @@ A simple launcher to manage, download, verify, update games.
 ## 📃 Features
 - [x] Downloading
 - [x] Dynamic database
-- [ ] 🚫 Seeding
 - [ ] 🔜 Uninstalling
 - [ ] Smart updating and verifying
 - [ ] ❔Modding (SINGLEPLAYER)
