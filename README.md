@@ -1,5 +1,5 @@
 # ⚠️ WARNING
-This project is FAR from completed please watch me try and fix and add all of those features listed below.
+This project is FAR from completed and will take a while before all the features are added.
 
 ## 🪐 Index
 A simple launcher to manage, download, verify, update games.
