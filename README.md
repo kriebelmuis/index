@@ -12,3 +12,4 @@ A simple launcher to manage, download, verify, update games.
 - [ ] ❔Cloud save game syncing
 - [ ] ❔Modding (SINGLEPLAYER)
 - [ ] 🔜 Throttling
+- [ ] Add custom torrents
