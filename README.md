@@ -9,5 +9,6 @@ A simple launcher to manage, download, verify, update games.
 - [x] Dynamic database
 - [ ] 🔜 Uninstalling
 - [ ] Smart updating and verifying
+- [ ] ❔Cloud save game syncing
 - [ ] ❔Modding (SINGLEPLAYER)
 - [ ] 🔜 Throttling
