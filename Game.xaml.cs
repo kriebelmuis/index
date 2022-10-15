@@ -1,100 +1,170 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Net;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.IO;
 using System.Drawing;
+using System.Linq;
+using System.Net.Http;
+using System.Net.NetworkInformation;
+using System.Windows.Media.Animation;
+using Windows.UI.Xaml.Media.Animation;
+using DoubleAnimation = System.Windows.Media.Animation.DoubleAnimation;
+using Storyboard = System.Windows.Media.Animation.Storyboard;
+using System.Windows.Media;
 
-namespace SignalX
+namespace Index
 {
     public partial class Game : System.Windows.Controls.Page
     {
-        static List<GameData> GetData()
-        {
-            WebClient wc = new WebClient();
+        private int id;
 
-            try
-            {
-                string json = wc.DownloadString(new Uri("https://raw.githubusercontent.com/OmarHopman/signal/main/database/database.json"));
-
-                if (!string.IsNullOrWhiteSpace(json))
-                {
-                    var gamedata = JsonConvert.DeserializeObject<List<GameData>>(json);
-
-                    return gamedata;
-                }
-
-                return null;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Index", MessageBoxButton.OK, MessageBoxImage.Error);
-                Application.Current.Shutdown(1);
-
-                return null;
-            }
-        }
-
-        public Game(string gameName) 
+        public Game(int ID) 
         {
             InitializeComponent();
+            
+            id = ID;
 
-            WebClient wc = new WebClient();
-
-            var games = GetData();
-            if (games != null)
+            if (Data.games != null)
             {
-                for (int i = 0; i < games.Count; i++)
+                for (var i = 0; i < Data.games.Count; i++)
                 {
-                    if (games[i].Name == gameName)
+                    if (Data.games[i].ID == id)
                     {
-                        GameName.Content = games[i].Name;
-                        GameDesc.Text = games[i].Description;
-
+                        this.Dispatcher.Invoke(async () =>
                         {
-                            Dispatcher.Invoke(() =>
+                            GameName.Content = Data.games[i].Name;
+                            GameDesc.Text = Data.games[i].Description;
+                            GameVersion.Content = "Build " + Data.games[i].LVersion;
+
+                            if (!Properties.Settings.Default.Installed.Contains(id))
                             {
-                                //back.Content = gamedata;
-                                try
+                                uninstallButton.Visibility = Visibility.Hidden;
+                                verifyButton.Visibility = Visibility.Hidden;
+                            }
+
+                            try
+                            {
+                                var memStream = new MemoryStream();
+
+                                using (var client = new HttpClient())
                                 {
-                                    //gameImage1.Source = new BitmapImage(new Uri(games[i].Images.Banners.B1));
-                                    gameImage1.Source = new BitmapImage(new Uri(games[i].Images.Banners.B1));
+                                    var response = await client.GetAsync(Data.games[i].Images.Banners.B1);
+                                    if (response != null && response.StatusCode == HttpStatusCode.OK)
+                                    {
+                                        using var stream = await response.Content.ReadAsStreamAsync();
+                                        await stream.CopyToAsync(memStream);
+                                        memStream.Position = 0;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Error fetching game image! (" + Data.games[i].Images.Banners.B1 + ")");
+                                    }
                                 }
-                                catch
+
+                                MemoryStream ms = new MemoryStream();
+                                (new Bitmap(memStream)).Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                                BitmapImage image = new BitmapImage();
+                                image.BeginInit();
+                                ms.Seek(0, SeekOrigin.Begin);
+                                image.StreamSource = ms;
+                                image.EndInit();
+
+                                this.gameImage1.Source = image;
+
+                                DoubleAnimation myDoubleAnimation = new DoubleAnimation();
+                                myDoubleAnimation.From = 0.0;
+                                myDoubleAnimation.To = 0.75;
+                                myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(.5));
+
+                                Storyboard myStoryboard = new Storyboard();
+                                myStoryboard.Children.Add(myDoubleAnimation);
+                                Storyboard.SetTargetName(myDoubleAnimation, "anim");
+                                Storyboard.SetTargetProperty(myDoubleAnimation, new PropertyPath(GradientStop.OffsetProperty));
+
+                                DoubleAnimation myDoubleAnimation1 = new DoubleAnimation();
+                                myDoubleAnimation1.From = 0.25;
+                                myDoubleAnimation1.To = 1.0;
+                                myDoubleAnimation1.Duration = new Duration(TimeSpan.FromSeconds(.5));
+
+                                Storyboard myStoryboard1 = new Storyboard();
+                                myStoryboard1.Children.Add(myDoubleAnimation1);
+                                Storyboard.SetTargetName(myDoubleAnimation1, "anim1");
+                                Storyboard.SetTargetProperty(myDoubleAnimation1, new PropertyPath(GradientStop.OffsetProperty));
+
+                                myStoryboard.Begin(this);
+                                myStoryboard1.Begin(this);
+                            }
+                            catch
+                            {
+                                var result = new Ping().Send("https://github.com/");
+
+                                if (result.Status != IPStatus.Success)
                                 {
-                                    MessageBox.Show("Image error, please report this to our Discord server!\n", "Index", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show("Unreachable database error", "Index", MessageBoxButton.OK);
+                                    Application.Current.Shutdown();
                                 }
-                            });
-                        }
+                                else
+                                {
+                                    if (NetworkInterface.GetIsNetworkAvailable())
+                                    {
+                                        MessageBox.Show("Unknown network error, please report at Discord", "Index", MessageBoxButton.OK);
+                                        Application.Current.Shutdown();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Failed to connect to network", "Index", MessageBoxButton.OK);
+                                        Application.Current.Shutdown();
+                                    }
+                                }
+                            }
+                        });
                     }
                 }
             }
+        }
 
-            Dispatcher.Invoke(() =>    
+        private void Download(object sender, MouseButtonEventArgs e)
+        {
+            if (Data.games != null)
             {
-                //back.Content = gamedata;
-                try
+                for (var i = 0; i < Data.games.Count; i++)
                 {
-                    gameImage1.Source = new BitmapImage(new Uri ("Cache/" + GameName + "1.jpg"));
+                    if (Data.games[i].ID == id)
+                    {
+                        var window = Application.Current.MainWindow;
+
+                        Downloads d = new Downloads(Data.games[i].Infohash, id, 0);
+
+                        (window as Main).Downloads.Navigate(d);
+                        (window as Main).Game.Visibility = Visibility.Hidden;
+                        (window as Main).Downloads.Visibility = Visibility.Visible;
+                    }
                 }
-                catch
-                {
-                    MessageBox.Show("Image error, please report this to our Discord server!\n", "Index", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            });
+            }
         }
 
-        private void Download()
+        private void Verify(object sender, MouseButtonEventArgs e)
         {
-            
+            var window = Application.Current.MainWindow;
+
+            Downloads d = new Downloads(null, id, 1);
+
+            (window as Main).Downloads.Navigate(d);
+            (window as Main).Game.Visibility = Visibility.Hidden;
+            (window as Main).Downloads.Visibility = Visibility.Visible;
         }
 
-        private void Update()
+        private void Uninstall(object sender, MouseButtonEventArgs e)
         {
+            var window = Application.Current.MainWindow;
 
+            Downloads d = new Downloads(null, id, 2);
+
+            (window as Main).Downloads.Navigate(d);
+            (window as Main).Game.Visibility = Visibility.Hidden;
+            (window as Main).Downloads.Visibility = Visibility.Visible;
         }
 
         private void goBackClick(object sender, MouseButtonEventArgs e)

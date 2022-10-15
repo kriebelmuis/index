@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 
@@ -25,8 +29,11 @@ namespace Index.Class
             var windowHelper = new WindowInteropHelper(window);
             var accent = new AccentPolicy();
 
+
+            //To  enable blur the image behind the window
             accent.AccentState = accentState;
             accent.GradientColor = (_blurOpacity << 24) | (_blurBackgroundColor & 0xFFFFFF); /*(White mask 0xFFFFFF)*/
+
 
             var accentStructSize = Marshal.SizeOf(accent);
 
@@ -43,6 +50,7 @@ namespace Index.Class
             Marshal.FreeHGlobal(accentPtr);
         }
 
+        //to call blur in our desired window
         internal WindowBlureffect(Window window, AccentState accentState)
         {
             this.window = window;

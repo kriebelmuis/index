@@ -73,9 +73,9 @@ namespace Index.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] arrow_left {
+        internal static byte[] CircularStd_Black {
             get {
-                object obj = ResourceManager.GetObject("arrow_left", resourceCulture);
+                object obj = ResourceManager.GetObject("CircularStd_Black", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace Index.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] arrow_right {
+        internal static byte[] CircularStd_Bold {
             get {
-                object obj = ResourceManager.GetObject("arrow_right", resourceCulture);
+                object obj = ResourceManager.GetObject("CircularStd_Bold", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace Index.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] cdownload {
+        internal static byte[] CircularStd_Book {
             get {
-                object obj = ResourceManager.GetObject("cdownload", resourceCulture);
+                object obj = ResourceManager.GetObject("CircularStd_Book", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace Index.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] check {
+        internal static byte[] CircularStd_Light {
             get {
-                object obj = ResourceManager.GetObject("check", resourceCulture);
+                object obj = ResourceManager.GetObject("CircularStd_Light", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -123,19 +123,9 @@ namespace Index.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] download {
+        internal static byte[] CircularStd_Medium {
             get {
-                object obj = ResourceManager.GetObject("download", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] error {
-            get {
-                object obj = ResourceManager.GetObject("error", resourceCulture);
+                object obj = ResourceManager.GetObject("CircularStd_Medium", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -263,79 +253,9 @@ namespace Index.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] settings {
+        internal static byte[] Segoe_Fluent_Icons {
             get {
-                object obj = ResourceManager.GetObject("settings", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] start {
-            get {
-                object obj = ResourceManager.GetObject("start", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] stop {
-            get {
-                object obj = ResourceManager.GetObject("stop", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap subnauticaimage1 {
-            get {
-                object obj = ResourceManager.GetObject("subnauticaimage1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap subnauticaimage2 {
-            get {
-                object obj = ResourceManager.GetObject("subnauticaimage2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] uninstall {
-            get {
-                object obj = ResourceManager.GetObject("uninstall", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] update {
-            get {
-                object obj = ResourceManager.GetObject("update", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] wip {
-            get {
-                object obj = ResourceManager.GetObject("wip", resourceCulture);
+                object obj = ResourceManager.GetObject("Segoe_Fluent_Icons", resourceCulture);
                 return ((byte[])(obj));
             }
         }
