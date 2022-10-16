@@ -8,8 +8,6 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Net.NetworkInformation;
-using System.Windows.Media.Animation;
-using Windows.UI.Xaml.Media.Animation;
 using DoubleAnimation = System.Windows.Media.Animation.DoubleAnimation;
 using Storyboard = System.Windows.Media.Animation.Storyboard;
 using System.Windows.Media;
@@ -124,6 +122,7 @@ namespace Index
                                 }
                             }
                         });
+                        break;
                     }
                 }
             }
@@ -133,17 +132,18 @@ namespace Index
         {
             if (Data.games != null)
             {
-                for (var i = 0; i < Data.games.Count; i++)
+                foreach (var game in Data.games)
                 {
-                    if (Data.games[i].ID == id)
+                    if (game.ID == id)
                     {
                         var window = Application.Current.MainWindow;
 
-                        Downloads d = new Downloads(Data.games[i].Infohash, id, 0);
+                        Downloads d = new Downloads(game.Infohash, id, 0);
 
                         (window as Main).Downloads.Navigate(d);
                         (window as Main).Game.Visibility = Visibility.Hidden;
                         (window as Main).Downloads.Visibility = Visibility.Visible;
+                        break;
                     }
                 }
             }

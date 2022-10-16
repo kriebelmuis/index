@@ -113,7 +113,7 @@ namespace Index
             }
             if(type == 1)
             {
-                MessageBox.Show("verify");
+                Console.WriteLine("Verifing");
             }
             if (type == 2)
             {
@@ -131,6 +131,7 @@ namespace Index
                                 {
                                     dl += 1;
                                     Data.dls[dl] = true;
+                                    break;
                                 }
                             }
 

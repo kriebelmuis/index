@@ -17,6 +17,8 @@ namespace Index
 {
     public partial class Library : Page
     {
+        private bool trig = false;
+
         public Library()
         {
             InitializeComponent();
@@ -25,34 +27,34 @@ namespace Index
 
         private async Task Boot()
         {
-            if (Data.games != null)
+            if(!trig)
             {
-                if (Properties.Settings.Default.Installed.Any())
+                trig = true;
+                if (Data.games != null)
                 {
-                    var count = 1;
-                    for (var i = 1; i < Properties.Settings.Default.Installed.Count(); i++)
+                    if (Properties.Settings.Default.Installed.Any())
                     {
-                        count++;
+                        var count = 1;
+                        foreach (var game in Properties.Settings.Default.Installed)
+                        {
+                            count++;
 
-                        Canvas cnvs = (Canvas)XamlReader.Load(XmlReader.Create(new StringReader(XamlWriter.Save(game1))));
-                        cnvs.Name = "game" + count.ToString();
-                        Games.Children.Add(cnvs);
+                            Canvas cnvs = (Canvas)XamlReader.Load(XmlReader.Create(new StringReader(XamlWriter.Save(game1))));
+                            cnvs.Name = "game" + count.ToString();
+                            Games.Children.Add(cnvs);
 
-                        cnvs.PreviewMouseLeftButtonUp += Game;
+                            cnvs.PreviewMouseLeftButtonUp += Game;
 
-                        await Refresh(count, cnvs);
+                            await Refresh(count, cnvs);
+                        }
+                        Games.Visibility = Visibility.Visible;
+                        scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
                     }
-                    Games.Visibility = Visibility.Visible;
-                    scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
                 }
                 else
                 {
-                    MessageBox.Show("No games");
+                    Methods.CheckConnection();
                 }
-            }
-            else
-            {
-                Methods.CheckConnection();
             }
         }
 
@@ -68,11 +70,8 @@ namespace Index
                         {
                             await Dispatcher.Invoke(async () =>
                             {
-                                Label text = (Label)cnvs.FindName("gameName");
-                                text.Content = game.Name;
-
-                                Label size = (Label)cnvs.FindName("gameSize");
-                                size.Content = "0 B";
+                                ((Label)cnvs.FindName("gameName")).Content = game.Name;
+                                ((Label)cnvs.FindName("gameSize")).Content = "0 B";
 
                                 try
                                 {

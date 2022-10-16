@@ -1,19 +1,14 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml;
 
@@ -31,7 +26,7 @@ namespace Index
         {
             if (Data.games != null)
             {
-                await refresh(1, game1);
+                await Refresh(1, game1);
                 var count = 1;
                 foreach (var game in Data.games)
                 {
@@ -43,7 +38,7 @@ namespace Index
 
                     cnvs.PreviewMouseLeftButtonUp += gameClick;
 
-                    await refresh(count, cnvs);
+                    await Refresh(count, cnvs);
                 }
                 Games.Visibility = Visibility.Visible;
                 scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
@@ -64,7 +59,7 @@ namespace Index
             return String.Format("{0:0.##} {1}", dblSByte, suffix[i]);
         }
 
-        private async Task refresh(int id, FrameworkElement cnvs)
+        private async Task Refresh(int id, FrameworkElement cnvs)
         {
             if (Data.games != null)
             {
