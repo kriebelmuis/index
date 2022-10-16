@@ -56,9 +56,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>svgviewer-png-output.ico</ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup>
     <StartupObject>Index.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
@@ -165,14 +162,12 @@
     <Content Include="Resources\Segoe Fluent Icons.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="svgviewer-png-output.ico" />
-    <Resource Include="saturn_icon-icons.com_69309 %281%29.ico" />
     <None Include="Resources\CircularStd-Black.otf" />
     <None Include="Resources\CircularStd-Bold.otf" />
     <None Include="Resources\CircularStd-Book.otf" />
     <None Include="Resources\CircularStd-Light.otf" />
     <None Include="Resources\CircularStd-Medium.otf" />
-    <Resource Include="Index.ico" />
+    <Resource Include="icon.ico" />
     <Content Include="Resources\loading.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -50,8 +50,8 @@ namespace Index
 
                                 using (var client = new HttpClient())
                                 {
-                                    var response = await client.GetAsync(Data.games[i].Images.Banners.B1);
-                                    if (response != null && response.StatusCode == HttpStatusCode.OK)
+                                    var response = await client.GetAsync(game.Images.Banners.B1);
+                                    if (response is { StatusCode: HttpStatusCode.OK })
                                     {
                                         using var stream = await response.Content.ReadAsStreamAsync();
                                         await stream.CopyToAsync(memStream);
