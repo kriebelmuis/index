@@ -53,18 +53,16 @@ namespace Index
         {
             this.Dispatcher.Invoke(() =>
             {
-                using (var fbd = new System.Windows.Forms.FolderBrowserDialog())
+                using var fbd = new System.Windows.Forms.FolderBrowserDialog();
+                System.Windows.Forms.DialogResult result = fbd.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    System.Windows.Forms.DialogResult result = fbd.ShowDialog();
+                    this.DirectoryText.Content = fbd.SelectedPath;
 
-                    if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                    {
-                        this.DirectoryText.Content = fbd.SelectedPath;
-
-                        Properties.Settings.Default.Directory = fbd.SelectedPath;
-                        Properties.Settings.Default.Save();
-                        Properties.Settings.Default.Reload();
-                    }
+                    Properties.Settings.Default.Directory = fbd.SelectedPath;
+                    Properties.Settings.Default.Save();
+                    Properties.Settings.Default.Reload();
                 }
             });
         }

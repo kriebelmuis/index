@@ -54,14 +54,13 @@ namespace Index
 
                             if (Data.games != null)
                             {
-                                for (var i = 0; i < Data.games.Count; i++)
+                                foreach (var game in Data.games)
                                 {
-                                    if (Data.games[i].ID == ID)
+                                    if (game.ID == ID)
                                     {
                                         await Dispatcher.Invoke(async () =>
                                         {
-                                            MessageBox.Show(Data.games[i].Images.Banners.B1);
-                                            var info = Data.games[i];
+                                            var info = game;
 
                                             MessageBox.Show(dl.ToString());
 
@@ -79,8 +78,8 @@ namespace Index
 
                                             using (HttpClient client = new())
                                             {
-                                                var response = await client.GetAsync(Data.games[i].Images.Banners.B1);
-                                                if (response != null && response.StatusCode == HttpStatusCode.OK)
+                                                var response = await client.GetAsync(game.Images.Banners.B1);
+                                                if (response is { StatusCode: HttpStatusCode.OK })
                                                 {
                                                     using var stream = await response.Content.ReadAsStreamAsync();
                                                     await stream.CopyToAsync(memStream);
@@ -148,14 +147,13 @@ namespace Index
 
                             if (Data.games != null)
                             {
-                                for (var i = 0; i < Data.games.Count; i++)
+                                foreach (var game in Data.games)
                                 {
-                                    if (Data.games[i].ID == ID)
+                                    if (game.ID == ID)
                                     {
                                         await Dispatcher.Invoke(async () =>
                                         {
-                                            MessageBox.Show(Data.games[i].Images.Banners.B1);
-                                            var info = Data.games[i];
+                                            var info = game;
 
                                             MessageBox.Show(dl.ToString());
 
@@ -166,8 +164,8 @@ namespace Index
 
                                             using (HttpClient client = new())
                                             {
-                                                var response = await client.GetAsync(Data.games[i].Images.Banners.B1);
-                                                if (response != null && response.StatusCode == HttpStatusCode.OK)
+                                                var response = await client.GetAsync(game.Images.Banners.B1);
+                                                if (response is { StatusCode: HttpStatusCode.OK })
                                                 {
                                                     using var stream = await response.Content.ReadAsStreamAsync();
                                                     await stream.CopyToAsync(memStream);
@@ -192,9 +190,10 @@ namespace Index
 
                                             dl = 0;
 
-                                            if (Process.GetProcessesByName(Data.games[i].Filename).Length > 0)
+                                            if (Process.GetProcessesByName(game.Filename).Length > 0)
                                             {
                                                 Process[] processes = Process.GetProcesses();
+                                                int i = 0;
                                                 for (var p = 0; i < processes.Length; i++)
                                                 {
                                                     if (processes[p].ProcessName == Data.games[i].Filename)
@@ -219,16 +218,16 @@ namespace Index
 
         private static string FormatBytes(long bytes)
         {
-            string[] Suffix = { "B", "KB", "MB", "GB", "TB" };
+            string[] suffix = { "B", "KB", "MB", "GB", "TB" };
             int i;
             double dblSByte = bytes;
 
-            for (i = 0; i < Suffix.Length && bytes >= 1024; i++, bytes /= 1024)
+            for (i = 0; i < suffix.Length && bytes >= 1024; i++, bytes /= 1024)
             {
                 dblSByte = bytes / 1024.0;
             }
 
-            return String.Format("{0:0.##} {1}", dblSByte, Suffix[i]);
+            return String.Format("{0:0.##} {1}", dblSByte, suffix[i]);
         }
 
         private void downloadClosed(object sender, RoutedEventArgs e)

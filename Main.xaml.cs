@@ -66,14 +66,7 @@ namespace Index
 
         private void maximizeClick(object sender, MouseButtonEventArgs e)
         {
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-            }
-            else
-            {
-                WindowState = WindowState.Maximized;
-            }
+            WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
         }
 
         private void downloadClick(object sender, MouseButtonEventArgs e)
