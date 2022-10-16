@@ -28,15 +28,15 @@ namespace Index
 
             if (Data.games != null)
             {
-                for (var i = 0; i < Data.games.Count; i++)
+                foreach (var game in Data.games)
                 {
-                    if (Data.games[i].ID == id)
+                    if (game.ID == id)
                     {
                         this.Dispatcher.Invoke(async () =>
                         {
-                            GameName.Content = Data.games[i].Name;
-                            GameDesc.Text = Data.games[i].Description;
-                            GameVersion.Content = "Build " + Data.games[i].LVersion;
+                            GameName.Content = game.Name;
+                            GameDesc.Text = game.Description;
+                            GameVersion.Content = "Build " + game.LVersion;
 
                             if (!Properties.Settings.Default.Installed.Contains(id))
                             {
@@ -59,7 +59,7 @@ namespace Index
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Error fetching game image! (" + Data.games[i].Images.Banners.B1 + ")");
+                                        MessageBox.Show("Error fetching game image! (" + game.Images.Banners.B1 + ")");
                                     }
                                 }
 
@@ -73,20 +73,24 @@ namespace Index
 
                                 this.gameImage1.Source = image;
 
-                                DoubleAnimation myDoubleAnimation = new DoubleAnimation();
-                                myDoubleAnimation.From = 0.0;
-                                myDoubleAnimation.To = 0.75;
-                                myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(.5));
+                                DoubleAnimation myDoubleAnimation = new DoubleAnimation
+                                {
+                                    From = 0.0,
+                                    To = 0.75,
+                                    Duration = new Duration(TimeSpan.FromSeconds(.5))
+                                };
 
                                 Storyboard myStoryboard = new Storyboard();
                                 myStoryboard.Children.Add(myDoubleAnimation);
                                 Storyboard.SetTargetName(myDoubleAnimation, "anim");
                                 Storyboard.SetTargetProperty(myDoubleAnimation, new PropertyPath(GradientStop.OffsetProperty));
 
-                                DoubleAnimation myDoubleAnimation1 = new DoubleAnimation();
-                                myDoubleAnimation1.From = 0.25;
-                                myDoubleAnimation1.To = 1.0;
-                                myDoubleAnimation1.Duration = new Duration(TimeSpan.FromSeconds(.5));
+                                DoubleAnimation myDoubleAnimation1 = new DoubleAnimation
+                                {
+                                    From = 0.25,
+                                    To = 1.0,
+                                    Duration = new Duration(TimeSpan.FromSeconds(.5))
+                                };
 
                                 Storyboard myStoryboard1 = new Storyboard();
                                 myStoryboard1.Children.Add(myDoubleAnimation1);

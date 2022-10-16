@@ -8,7 +8,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Index")]
-[assembly: AssemblyDescription("An open-source, torrent library and downloader.")]
+[assembly: AssemblyDescription("An open-source torrent library and downloader sourced from 1337x.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("sine Software")]
 [assembly: AssemblyProduct("Index")]

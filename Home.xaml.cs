@@ -33,7 +33,7 @@ namespace Index
             {
                 await refresh(1, game1);
                 var count = 1;
-                for (var i = 1; i < Data.games.Count; i++)
+                foreach (var game in Data.games)
                 {
                     count++;
 
@@ -52,32 +52,32 @@ namespace Index
 
         private static string FormatBytes(long bytes)
         {
-            string[] Suffix = { "B", "KB", "MB", "GB", "TB" };
+            string[] suffix = { "B", "KB", "MB", "GB", "TB" };
             int i;
             double dblSByte = bytes;
 
-            for (i = 0; i < Suffix.Length && bytes >= 1024; i++, bytes /= 1024)
+            for (i = 0; i < suffix.Length && bytes >= 1024; i++, bytes /= 1024)
             {
                 dblSByte = bytes / 1024.0;
             }
 
-            return String.Format("{0:0.##} {1}", dblSByte, Suffix[i]);
+            return String.Format("{0:0.##} {1}", dblSByte, suffix[i]);
         }
 
         private async Task refresh(int id, FrameworkElement cnvs)
         {
             if (Data.games != null)
             {
-                for (int i = 0; i < Data.games.Count; i++)
+                foreach (var game in Data.games)
                 {
                     foreach (Canvas c in Games.Children)
                     {
-                        if (Data.games[i].ID == id)
+                        if (game.ID == id)
                         {
                             await Dispatcher.Invoke(async () =>
                             {
                                 Label text = (Label)cnvs.FindName("gameName");
-                                text.Content = Data.games[i].Name;
+                                text.Content = game.Name;
 
                                 Label size = (Label)cnvs.FindName("gameSize");
                                 size.Content = "0 B";
@@ -88,14 +88,12 @@ namespace Index
 
                                     using (var client = new HttpClient())
                                     {
-                                        var response = await client.GetAsync(Data.games[i].Images.Banners.B1);
-                                        if (response != null && response.StatusCode == HttpStatusCode.OK)
+                                        var response = await client.GetAsync(game.Images.Banners.B1);
+                                        if (response is { StatusCode: HttpStatusCode.OK })
                                         {
-                                            using (var stream = await response.Content.ReadAsStreamAsync())
-                                            {
-                                                await stream.CopyToAsync(memStream);
-                                                memStream.Position = 0;
-                                            }
+                                            using var stream = await response.Content.ReadAsStreamAsync();
+                                            await stream.CopyToAsync(memStream);
+                                            memStream.Position = 0;
                                         }
                                     }
 
@@ -112,7 +110,7 @@ namespace Index
                                 }
                                 catch
                                 {
-                                    MessageBox.Show("Error while loading image", "Index", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show("Error while loading image (" + id + ")", "Index", MessageBoxButton.OK, MessageBoxImage.Error);
                                 }
                             });
                         }
@@ -131,14 +129,7 @@ namespace Index
 
             var val = Regex.Match(element.Name, @"\d+").Value;
 
-            if(string.IsNullOrWhiteSpace(Regex.Match(element.Name, @"\d+").Value))
-            {
-                g = new Game(1);
-            }
-            else
-            {
-                g = new Game(int.Parse(val));
-            }
+            g = string.IsNullOrWhiteSpace(Regex.Match(element.Name, @"\d+").Value) ? new Game(1) : new Game(int.Parse(val));
 
             (window as Main).Game.Navigate(g);
             (window as Main).Game.Visibility = Visibility.Visible;

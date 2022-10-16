@@ -61,7 +61,17 @@ namespace Index
 
                 if (!string.IsNullOrWhiteSpace(json))
                 {
-                    return JsonConvert.DeserializeObject<List<GameData>>(json);
+                    var list = JsonConvert.DeserializeObject<List<GameData>>(json);
+
+                    if (!string.IsNullOrWhiteSpace(json))
+                    {
+                        return JsonConvert.DeserializeObject<List<GameData>>(json);
+                    }
+                    else
+                    {
+                        CheckConnection();
+                        return null;
+                    }
                 }
                 else
                 {
