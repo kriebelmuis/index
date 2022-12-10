@@ -12,7 +12,7 @@ A easy to use launcher to manage, download, verify, update games.
 - [ ] 🔜 Uninstalling
 - [ ] Smart updating and verifying
 - [ ] ❔Cloud save game syncing
-- [ ] ❔Modding (SINGLEPLAYER)
+- [ ] ❔Modding (SP ONLY)
 - [ ] 🔜 Throttling
 - [ ] Add custom torrents
 
