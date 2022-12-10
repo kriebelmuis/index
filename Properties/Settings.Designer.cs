@@ -49,13 +49,8 @@ namespace Index.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\n<ArrayOfInt xmlns:xsd=\"http://www.w3.org/" +
             "2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />")]
-=======
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfInt xmlns:xsd=\"http://www.w3.org" +
-            "/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />")]
->>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
         public int[] Installed {
             get {
                 return ((int[])(this["Installed"]));

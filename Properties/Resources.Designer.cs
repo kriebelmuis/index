@@ -61,19 +61,6 @@ namespace Index.Properties {
         }
         
         /// <summary>
-<<<<<<< HEAD
-=======
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap amongusimage1 {
-            get {
-                object obj = ResourceManager.GetObject("amongusimage1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
->>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] CircularStd_Black {
@@ -94,19 +81,6 @@ namespace Index.Properties {
         }
         
         /// <summary>
-<<<<<<< HEAD
-=======
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap astroneerimage2 {
-            get {
-                object obj = ResourceManager.GetObject("astroneerimage2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
->>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] CircularStd_Book {
@@ -137,59 +111,6 @@ namespace Index.Properties {
         }
         
         /// <summary>
-<<<<<<< HEAD
-=======
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap grandtheftautovimage1 {
-            get {
-                object obj = ResourceManager.GetObject("grandtheftautovimage1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap grandtheftautovimage2 {
-            get {
-                object obj = ResourceManager.GetObject("grandtheftautovimage2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] home {
-            get {
-                object obj = ResourceManager.GetObject("home", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon icon {
-            get {
-                object obj = ResourceManager.GetObject("icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] library {
-            get {
-                object obj = ResourceManager.GetObject("library", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
->>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] pause {
@@ -240,29 +161,6 @@ namespace Index.Properties {
         }
         
         /// <summary>
-<<<<<<< HEAD
-=======
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap rustimage1 {
-            get {
-                object obj = ResourceManager.GetObject("rustimage1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap rustimage2 {
-            get {
-                object obj = ResourceManager.GetObject("rustimage2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
->>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] Segoe_Fluent_Icons {
