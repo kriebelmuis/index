@@ -71,6 +71,7 @@ namespace Index
 
                                 this.gameImage1.Source = image;
 
+<<<<<<< HEAD
                                 DoubleAnimation da = new DoubleAnimation
                                 {
                                     From = 0.0,
@@ -78,6 +79,34 @@ namespace Index
                                     Duration = new Duration(TimeSpan.FromSeconds(.25))
                                 };
                                 gameImage1.BeginAnimation(OpacityProperty, da);
+=======
+                                DoubleAnimation myDoubleAnimation = new DoubleAnimation
+                                {
+                                    From = 0.0,
+                                    To = 0.75,
+                                    Duration = new Duration(TimeSpan.FromSeconds(.5))
+                                };
+
+                                Storyboard myStoryboard = new Storyboard();
+                                myStoryboard.Children.Add(myDoubleAnimation);
+                                Storyboard.SetTargetName(myDoubleAnimation, "anim");
+                                Storyboard.SetTargetProperty(myDoubleAnimation, new PropertyPath(GradientStop.OffsetProperty));
+
+                                DoubleAnimation myDoubleAnimation1 = new DoubleAnimation
+                                {
+                                    From = 0.25,
+                                    To = 1.0,
+                                    Duration = new Duration(TimeSpan.FromSeconds(.5))
+                                };
+
+                                Storyboard myStoryboard1 = new Storyboard();
+                                myStoryboard1.Children.Add(myDoubleAnimation1);
+                                Storyboard.SetTargetName(myDoubleAnimation1, "anim1");
+                                Storyboard.SetTargetProperty(myDoubleAnimation1, new PropertyPath(GradientStop.OffsetProperty));
+
+                                myStoryboard.Begin(this);
+                                myStoryboard1.Begin(this);
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
                             }
                             catch
                             {
@@ -111,6 +140,7 @@ namespace Index
 
         private void Download(object sender, MouseButtonEventArgs e)
         {
+<<<<<<< HEAD
             var exists = false;
 
             foreach (var game in Data.games)
@@ -153,13 +183,36 @@ namespace Index
         {
             var window = Application.Current.MainWindow;
             (window as Main).Game.Visibility = Visibility.Hidden;
+=======
+            if (Data.games != null)
+            {
+                foreach (var game in Data.games)
+                {
+                    if (game.ID == id)
+                    {
+                        var window = Application.Current.MainWindow;
+
+                        Downloads d = new Downloads(game.Infohash, id, 0);
+
+                        (window as Main).Downloads.Navigate(d);
+                        (window as Main).Game.Visibility = Visibility.Hidden;
+                        (window as Main).Downloads.Visibility = Visibility.Visible;
+                        break;
+                    }
+                }
+            }
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
         }
 
         private void Verify(object sender, MouseButtonEventArgs e)
         {
             var window = Application.Current.MainWindow;
 
+<<<<<<< HEAD
             Downloads d = new Downloads(id, 1);
+=======
+            Downloads d = new Downloads(null, id, 1);
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
 
             (window as Main).Downloads.Navigate(d);
             (window as Main).Game.Visibility = Visibility.Hidden;
@@ -170,7 +223,11 @@ namespace Index
         {
             var window = Application.Current.MainWindow;
 
+<<<<<<< HEAD
             Downloads d = new Downloads(id, 2);
+=======
+            Downloads d = new Downloads(null, id, 2);
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
 
             (window as Main).Downloads.Navigate(d);
             (window as Main).Game.Visibility = Visibility.Hidden;
@@ -180,6 +237,7 @@ namespace Index
         private void goBackClick(object sender, MouseButtonEventArgs e)
         {
             var window = Application.Current.MainWindow;
+<<<<<<< HEAD
             DoubleAnimation da = new DoubleAnimation
             {
                 From = 1.0,
@@ -193,6 +251,8 @@ namespace Index
         private void Completed(object sender, EventArgs e)
         {
             var window = Application.Current.MainWindow;
+=======
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
             (window as Main).Game.Visibility = Visibility.Hidden;
         }
     }

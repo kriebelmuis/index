@@ -22,7 +22,11 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+<<<<<<< HEAD
         <Canvas x:Name="Download0" Height="120" Width="810" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0" Grid.Row="0">
+=======
+        <Canvas x:Name="Download1" Height="120" Width="810" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0" Grid.Row="0">
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
             <Rectangle 
                 Height="120" 
                 HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -40,7 +44,11 @@
                     </LinearGradientBrush>
                 </Rectangle.OpacityMask>
             </Rectangle>
+<<<<<<< HEAD
             <Rectangle x:Name="background0" 
+=======
+            <Rectangle x:Name="background1" 
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
                 Height="120" VerticalAlignment="Center" HorizontalAlignment="Center"
                 Width="810" RadiusX="4" RadiusY="4">
                 <Rectangle.ContextMenu>
@@ -56,10 +64,17 @@
                     </LinearGradientBrush>
                 </Rectangle.OpacityMask>
                 <Rectangle.Fill>
+<<<<<<< HEAD
                     <ImageBrush x:Name="image0" ImageSource="resources/index.jpg"  Stretch="UniformToFill"/>
                 </Rectangle.Fill>
             </Rectangle>
             <ui:ProgressBar x:Name="progressBar0" 
+=======
+                    <ImageBrush x:Name="image1" ImageSource="resources/index.jpg"  Stretch="UniformToFill"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <ui:ProgressBar x:Name="progressBar1" 
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
                 IsIndeterminate="True" 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
@@ -70,21 +85,33 @@
                 BorderBrush="White" 
                 Foreground="#005fb8" 
                 Background="Transparent"/>
+<<<<<<< HEAD
             <Label x:Name="gameName0"
+=======
+            <Label x:Name="gameName1"
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
                 Content="Name"
                 HorizontalAlignment="Left"
                 Margin="5,5,0,0" 
                 VerticalAlignment="Top" 
                 HorizontalContentAlignment="Left"
                 Width="Auto" FontFamily="Circular Std Bold" FontSize="35" Foreground="White"/>
+<<<<<<< HEAD
             <Label x:Name="gameInfo0"
+=======
+            <Label x:Name="gameInfo1"
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
                 Content="Preparing"
                 HorizontalAlignment="Left"
                 Margin="5,50,0,0" 
                 VerticalAlignment="Top" 
                 HorizontalContentAlignment="Left"
                 Width="Auto" FontFamily="Circular Std Book" FontSize="18" Foreground="White"/>
+<<<<<<< HEAD
             <Label x:Name="downloadProcentage0"
+=======
+            <Label x:Name="downloadProcentage1"
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
                 Content="0%"
                 Canvas.Bottom="10"
                 Canvas.Left="5"
@@ -94,7 +121,11 @@
                 FontSize="18" 
                 Visibility="Hidden"
                 Foreground="White"/>
+<<<<<<< HEAD
             <Label x:Name="downloadEta0"
+=======
+            <Label x:Name="downloadEta1"
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
                 Content="00:00:00 left"
                 Canvas.Top="7"
                 Canvas.Right="7"
@@ -103,7 +134,11 @@
                 FontSize="24" 
                 Visibility="Hidden"
                 Foreground="White"/>
+<<<<<<< HEAD
             <Label x:Name="downloadSpeed0"
+=======
+            <Label x:Name="downloadSpeed1"
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
                 Content="0 mb/s"
                 Canvas.Right="7"
                 Canvas.Top="40"
@@ -113,7 +148,11 @@
                 Visibility="Hidden"
                 Foreground="White"/>
             <Button 
+<<<<<<< HEAD
             x:Name="pauseButton0" 
+=======
+            x:Name="pauseButton1" 
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
             Height="35" 
             Background="Transparent"
             VerticalAlignment="Bottom" 
@@ -148,7 +187,11 @@
                 <ui:FontIcon x:Name="pause" Glyph="&#xe769;" FontFamily="Segoe Fluent Icons" FontSize="13" Foreground="White" Height="35" Width="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Button>
             <Button 
+<<<<<<< HEAD
             x:Name="stopButton0" 
+=======
+            x:Name="stopButton1" 
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
             Height="35" 
             Background="Transparent"
             Width="35" 

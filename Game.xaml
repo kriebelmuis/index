@@ -13,12 +13,21 @@
     <DockPanel x:Name="Dock" Margin="0,0,0,0">
         <ScrollViewer x:Name="Scroll" HorizontalScrollBarVisibility="Auto" VirtualizingPanel.ScrollUnit="Pixel" CanContentScroll="false" VirtualizingStackPanel.VirtualizationMode="Recycling" Margin="0,0,0,0">
             <StackPanel x:Name="Stack">
+<<<<<<< HEAD
                 <Image x:Name="gameImage1" Opacity="0" Height="411" Width="830" Stretch="UniformToFill" StretchDirection="Both">
                     <Image.OpacityMask>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Offset="1" Color="#00000000"/>
                             <GradientStop Offset="0" Color="#FFFFFF"/>
                             <GradientStop Color="#19484848" Offset="0.75"/>
+=======
+                <Image x:Name="gameImage1" Height="411" Width="830" Stretch="UniformToFill" StretchDirection="Both">
+                    <Image.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop x:Name="anim1" Offset="0.25" Color="#00000000"/>
+                            <GradientStop Offset="0" Color="#FFFFFF"/>
+                            <GradientStop x:Name="anim" Color="#19484848" Offset="0"/>
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
                         </LinearGradientBrush>
                     </Image.OpacityMask>
                 </Image>

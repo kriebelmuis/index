@@ -352,6 +352,7 @@
                 <ui:FontIcon Glyph="&#xe713;" FontFamily="Segoe Fluent Icons" Foreground="White" Height="55" Width="55"/>
             </Canvas>
         </StackPanel>
+<<<<<<< HEAD
         <Rectangle
             Fill="#111213"
             Margin="0,55,0,0"/>
@@ -359,22 +360,34 @@
             Source="Home.xaml" 
             Visibility="Visible"
             Opacity="1"
+=======
+        <Frame x:Name="Home"
+            Source="Home.xaml" 
+            Visibility="Visible"
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
             NavigationUIVisibility="Hidden" 
             Margin="0,55,0,0"/>
         <Frame x:Name="Library"
             Source="Library.xaml" 
             Visibility="Hidden"
+<<<<<<< HEAD
             Opacity="0"
+=======
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
             NavigationUIVisibility="Hidden" 
             Margin="0,55,0,0"/>
         <Frame x:Name="Downloads"
             Visibility="Hidden"
+<<<<<<< HEAD
             Opacity="0"
+=======
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
             NavigationUIVisibility="Hidden" 
             Margin="0,55,0,0"/>
         <Frame x:Name="Settings"
             Source="Settings.xaml" 
             Visibility="Hidden"
+<<<<<<< HEAD
             Opacity="0"
             NavigationUIVisibility="Hidden" 
             Margin="0,55,0,0"/>
@@ -382,6 +395,13 @@
             Source="Clear.xaml" 
             Visibility="Hidden"
             Opacity="0"
+=======
+            NavigationUIVisibility="Hidden" 
+            Margin="0,55,0,0"/>
+        <Frame x:Name="Game"
+            Source="Library.xaml" 
+            Visibility="Hidden"
+>>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
             NavigationUIVisibility="Hidden"
             Margin="0,55,0,0"/>
     </Grid>
