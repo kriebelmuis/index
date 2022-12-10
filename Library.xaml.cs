@@ -22,21 +22,16 @@ namespace Index
         public Library()
         {
             InitializeComponent();
-<<<<<<< HEAD
 
             if (!trig)
             {
                 trig = true;
                 _ = Boot();
             }
-=======
-            _ = Boot();
->>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
         }
 
         private async Task Boot()
         {
-<<<<<<< HEAD
             if (Properties.Settings.Default.Installed.Any())
             {
                 var count = 1;
@@ -54,36 +49,6 @@ namespace Index
                 }
                 Games.Visibility = Visibility.Visible;
                 scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
-=======
-            if(!trig)
-            {
-                trig = true;
-                if (Data.games != null)
-                {
-                    if (Properties.Settings.Default.Installed.Any())
-                    {
-                        var count = 1;
-                        foreach (var game in Properties.Settings.Default.Installed)
-                        {
-                            count++;
-
-                            Canvas cnvs = (Canvas)XamlReader.Load(XmlReader.Create(new StringReader(XamlWriter.Save(game1))));
-                            cnvs.Name = "game" + count.ToString();
-                            Games.Children.Add(cnvs);
-
-                            cnvs.PreviewMouseLeftButtonUp += Game;
-
-                            await Refresh(count, cnvs);
-                        }
-                        Games.Visibility = Visibility.Visible;
-                        scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
-                    }
-                }
-                else
-                {
-                    Methods.CheckConnection();
-                }
->>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
             }
         }
 
@@ -145,29 +110,7 @@ namespace Index
 
         private void Game(object sender, MouseButtonEventArgs e)
         {
-<<<<<<< HEAD
             // Launch
-=======
-            var window = Application.Current.MainWindow;
-
-            Game g;
-
-            FrameworkElement element = (FrameworkElement)sender;
-
-            var val = Regex.Match(element.Name, @"\d+").Value;
-
-            if (string.IsNullOrWhiteSpace(Regex.Match(element.Name, @"\d+").Value))
-            {
-                g = new Game(1);
-            }
-            else
-            {
-                g = new Game(int.Parse(val));
-            }
-
-            (window as Main).Game.Navigate(g);
-            (window as Main).Game.Visibility = Visibility.Visible;
->>>>>>> 8b1a1162fc34f25eaaa864a332174d5c350361d6
         }
     }
 }
