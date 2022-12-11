@@ -9,7 +9,7 @@ A easy to use launcher to manage, download, verify, update games.
 - [x] Dynamic database
 - [ ] ❔Friend system
 - [ ] Add programs to catalog
-- [ ] 🔜 Uninstalling
+- [x] Uninstalling
 - [ ] Smart updating and verifying
 - [ ] ❔Cloud save game syncing
 - [ ] ❔Modding (SP ONLY)
