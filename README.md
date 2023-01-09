@@ -6,15 +6,14 @@ An open-source torrent library and BitTorrent client made in C-Sharp.
 
 ## 📃 Features
 - [x] Downloading
-- [x] Dynamic database
-- [ ] ❔Friend system
-- [ ] Add programs to catalog
 - [x] Uninstalling
-- [ ] Smart updating and verifying
-- [ ] ❔Cloud save game syncing
-- [ ] ❔Modding (SP ONLY)
-- [ ] 🔜 Throttling
+- [x] Dynamic database
+- [ ] Throttling
 - [ ] Add custom torrents
+- [ ] Modding (Singleplayer)
+- [ ] Friend system
+- [ ] Cloud save game syncing
+- [ ] Smart updating and verifying
 
 ## 🐛 Known bugs
 - Size not calculating on home screen
