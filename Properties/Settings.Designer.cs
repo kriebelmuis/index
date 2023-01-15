@@ -49,19 +49,7 @@ namespace Index.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\n<ArrayOfInt xmlns:xsd=\"http://www.w3.org/" +
-            "2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />")]
-        public int[] Installed {
-            get {
-                return ((int[])(this["Installed"]));
-            }
-            set {
-                this["Installed"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public float Throttle {
             get {
@@ -69,6 +57,19 @@ namespace Index.Properties {
             }
             set {
                 this["Throttle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfInt xmlns:xsd=\"http://www.w3.org" +
+            "/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />")]
+        public int[] Installed {
+            get {
+                return ((int[])(this["Installed"]));
+            }
+            set {
+                this["Installed"] = value;
             }
         }
     }

@@ -1,11 +1,15 @@
-﻿using System;
+
+using Index.Class;
+
+using System;
 using System.Windows;
 using System.Windows.Input;
-using System.Runtime.InteropServices;
 using System.Windows.Interop;
-using Index.Class;
 using System.Windows.Controls;
+using System.Runtime.InteropServices;
 using System.Windows.Media.Animation;
+using System.Data;
+using System.Diagnostics;
 
 namespace Index
 {
@@ -34,21 +38,19 @@ namespace Index
 			try
 			{
 				InitializeComponent();
-			}
+
+                Application.Current.MainWindow = this;
+
+                var hWnd = new WindowInteropHelper(GetWindow(this)).EnsureHandle();
+                var attribute = DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE;
+                var preference = DWM_WINDOW_CORNER_PREFERENCE.DWMWCP_ROUNDSMALL;
+                DwmSetWindowAttribute(hWnd, attribute, ref preference, sizeof(uint));
+            }
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.ToString(), "Index", MessageBoxButton.OK, MessageBoxImage.Error);
 				Environment.Exit(0);
 			}
-
-			IntPtr hWnd = new WindowInteropHelper(GetWindow(this)).EnsureHandle();
-			var attribute = DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE;
-			var preference = DWM_WINDOW_CORNER_PREFERENCE.DWMWCP_ROUNDSMALL;
-			DwmSetWindowAttribute(hWnd, attribute, ref preference, sizeof(uint));
-
-			Downloads d = new Downloads(0, 3);
-
-			Downloads.Navigate(d);
 		}
 
 		private void dragWindow(object sender, MouseButtonEventArgs e)
@@ -75,7 +77,7 @@ namespace Index
 		{
 			if (Data.vis != "Downloads")
 			{
-				var foo = (Frame)this.FindName(Data.vis);
+				var foo = (Frame)FindName(Data.visible);
 				DoubleAnimation da = new DoubleAnimation
 				{
 					From = 1.0,
@@ -83,7 +85,7 @@ namespace Index
 					Duration = new Duration(TimeSpan.FromSeconds(.25))
 				};
 				da.Completed += DownloadCompleted;
-				var foo1 = (Frame)this.FindName("Downloads");
+				var foo1 = (Frame)FindName("Downloads");
 				DoubleAnimation da1 = new DoubleAnimation
 				{
 					From = 0.0,
@@ -97,18 +99,18 @@ namespace Index
 
 		private void DownloadCompleted(object sender, EventArgs e)
 		{
-			var foo = (Frame)this.FindName(Data.vis);
-			Data.vis = "Downloads";
+			var foo = (Frame)FindName(Data.visible);
+			Data.visible = "Downloads";
 			foo.Visibility = Visibility.Hidden;
-			var foo1 = (Frame)this.FindName("Downloads");
+			var foo1 = (Frame)FindName("Downloads");
 			foo1.Visibility = Visibility.Visible;
 		}
 
 		private void libraryClick(object sender, MouseButtonEventArgs e)
 		{
-			if (Data.vis != "Library")
+			if (Data.visible != "Library")
 			{
-				var foo = (Frame)this.FindName(Data.vis);
+				var foo = (Frame)FindName(Data.visible);
 				DoubleAnimation da = new DoubleAnimation
 				{
 					From = 1.0,
@@ -116,7 +118,7 @@ namespace Index
 					Duration = new Duration(TimeSpan.FromSeconds(.25))
 				};
 				da.Completed += LibraryCompleted;
-				var foo1 = (Frame)this.FindName("Library");
+				var foo1 = (Frame)FindName("Library");
 				DoubleAnimation da1 = new DoubleAnimation
 				{
 					From = 0.0,
@@ -130,18 +132,18 @@ namespace Index
 
 		private void LibraryCompleted(object sender, EventArgs e)
 		{
-			var foo = (Frame)this.FindName(Data.vis);
-			Data.vis = "Library";
+			var foo = (Frame)FindName(Data.visible);
+			Data.visible = "Library";
 			foo.Visibility = Visibility.Hidden;
-			var foo1 = (Frame)this.FindName("Library");
+			var foo1 = (Frame)FindName("Library");
 			foo1.Visibility = Visibility.Visible;
 		}
 
 		private void homeClick(object sender, MouseButtonEventArgs e)
 		{
-			if (Data.vis != "Home")
+			if (Data.visible != "Home")
 			{
-				var foo = (Frame)this.FindName(Data.vis);
+				var foo = (Frame)FindName(Data.visible);
 				DoubleAnimation da = new DoubleAnimation
 				{
 					From = 1.0,
@@ -149,7 +151,7 @@ namespace Index
 					Duration = new Duration(TimeSpan.FromSeconds(.25))
 				};
 				da.Completed += HomeCompleted;
-				var foo1 = (Frame)this.FindName("Home");
+				var foo1 = (Frame)FindName("Home");
 				DoubleAnimation da1 = new DoubleAnimation
 				{
 					From = 0.0,
@@ -163,18 +165,18 @@ namespace Index
 
 		private void HomeCompleted(object sender, EventArgs e)
 		{
-			var foo = (Frame)this.FindName(Data.vis);
-			Data.vis = "Home";
+			var foo = (Frame)FindName(Data.visible);
+			Data.visible = "Home";
 			foo.Visibility = Visibility.Hidden;
-			var foo1 = (Frame)this.FindName("Home");
+			var foo1 = (Frame)FindName("Home");
 			foo1.Visibility = Visibility.Visible;
 		}
 
 		private void settingsClick(object sender, MouseButtonEventArgs e)
 		{
-			if (Data.vis != "Settings")
+			if (Data.visible != "Settings")
 			{
-				var foo = (Frame)this.FindName(Data.vis);
+				var foo = (Frame)FindName(Data.visible);
 				DoubleAnimation da = new DoubleAnimation
 				{
 					From = 1.0,
@@ -182,7 +184,7 @@ namespace Index
 					Duration = new Duration(TimeSpan.FromSeconds(.25))
 				};
 				da.Completed += SettingsCompleted;
-				var foo1 = (Frame)this.FindName("Settings");
+				var foo1 = (Frame)FindName("Settings");
 				DoubleAnimation da1 = new DoubleAnimation
 				{
 					From = 0.0,
@@ -196,16 +198,16 @@ namespace Index
 
 		private void SettingsCompleted(object sender, EventArgs e)
 		{
-			var foo = (Frame)this.FindName(Data.vis);
-			Data.vis = "Settings";
+			var foo = (Frame)FindName(Data.visible);
+			Data.visible = "Settings";
 			foo.Visibility = Visibility.Hidden;
-			var foo1 = (Frame)this.FindName("Settings");
+			var foo1 = (Frame)FindName("Settings");
 			foo1.Visibility = Visibility.Visible;
 		}
 
 		private void Load(object sender, RoutedEventArgs e)
 		{
-			DataContext = new WindowBlureffect(this, AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND) { BlurOpacity = 1 };
+			DataContext = new WindowBlureffect(this, AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND) { BlurOpacity = 3 };
 		}
 	}
 }

@@ -1,315 +1,137 @@
 ﻿using System;
-using System.Net;
+<<<<<<< HEAD
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Controls;
-
-using SuRGeoNix.BitSwarmLib;
-
-using System.IO;
-using System.Windows.Media.Imaging;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.Drawing;
-using System.Net.Http;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using Windows.Gaming.Input;
+using System.Text.RegularExpressions;
+using System.Windows.Media.Imaging;
+using System.Data;
+using ModernWpf;
+using System.Windows.Media;
 
 namespace Index
 {
-	public partial class Downloads : Page
+	public partial class Downloads : System.Windows.Controls.Page
 	{
 		public static int dl = -1;
 
-		public Downloads(int gameID, int type)
+		public static DataTable dltable = new();
+
+		public Downloads()
 		{
 			InitializeComponent();
 
-            if (gameID == 0)
-            {
-                MessageBox.Show("Invalid game ID or game hash", "Index", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+            Data.dltable.TableNewRow += DLNewRow;
 
-            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.Directory))
-            {
-                MessageBox.Show("Default download directory is not set", "Index", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+        }
 
-            dl = -1;
+        private void DLNewRow(object sender, DataTableNewRowEventArgs e)
+		{
+			var dlid = e.Row[(int)DownloadTable.DLID];
 
-            foreach (var b in Data.dls)
-            {
-                if (b == false)
+			if (dlid != null)
+			{
+				var canvas = Window.FindDescendantByName($"Download{dlid}");
+
+				var bit = new BitmapImage();
+				bit.BeginInit();
+				bit.UriSource = new Uri(e.Row[(int)DownloadTable.Banner].ToString());
+				bit.EndInit();
+
+				var bg = canvas.FindDescendant<ImageBrush>();
+				var name = (Label)canvas.FindDescendantByName($"Name{dlid}");
+                var proctext = (Label)canvas.FindDescendantByName($"Procentage{dlid}");
+                var bar = (ProgressBar)canvas.FindDescendantByName($"Bar{dlid}");
+
+                if (bg.ImageSource != bit)
+				{
+					bg.ImageSource = bit;
+				}
+
+				if ((string)name.Content != e.Row[(int)DownloadTable.Name].ToString())
+				{
+					name.Content = e.Row[(int)DownloadTable.Name].ToString();
+				}
+
+                if ((string)proctext.Content != e.Row[(int)DownloadTable.Procentage].ToString())
                 {
-                    dl += 1;
-                    Data.dls[dl] = true;
-                    break;
+                    proctext.Content = e.Row[(int)DownloadTable.Name].ToString();
+                    bar.Value = int.Parse(e.Row[(int)DownloadTable.Name].ToString());
                 }
-            }
-
-            if (dl == -1)
-            {
-                MessageBox.Show("Maximum of 3 downloads reached", "Index", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            Canvas obj = (Canvas)FindName("Download" + dl);
-
-            if (type == 0)
+			}
+			else
 			{
-                Dispatcher.Invoke(async () =>
+				var row = e.Row;
+
+				var canvas = (Canvas)FindName($"Download{dlid}");
+				var da = new DoubleAnimation
 				{
-					Data.bitSwarm.StatsUpdated += torrentUpdated;
-					Data.bitSwarm.StatusChanged += torrentChanged;
-
-					foreach (var game in Data.games)
-					{
-						if (game.ID == gameID)
-						{
-							await Dispatcher.Invoke(async () =>
-							{
-								if (Directory.Exists(Properties.Settings.Default.Directory + @"/" + game.Name))
-								{
-									var result = MessageBox.Show("A folder already exists with the game name " + game.Name + " are you sure you want to remove the contents?", "Index", MessageBoxButton.YesNo, MessageBoxImage.Question);
-								}
-
-								Label gameName = (Label)obj.FindName("gameName" + dl);
-								gameName.Content = game.Name;
-
-								Directory.CreateDirectory(Path.Combine(Properties.Settings.Default.Directory, @"\", game.Name, @"\Download"));
-
-								Data.bitSwarm.Options.FolderComplete = Path.Combine(Properties.Settings.Default.Directory, @"\", game.Name, @"\Download");
-								Data.bitSwarm.Options.FolderIncomplete = Path.Combine(Properties.Settings.Default.Directory, @"\", game.Name, @"\Download");
-								Data.bitSwarm.Options.FolderSessions = Path.Combine(Properties.Settings.Default.Directory, @"\", game.Name, @"\Download");
-								Data.bitSwarm.Options.FolderTorrents = Path.Combine(Properties.Settings.Default.Directory, @"\", game.Name, @"\Download");
-
-								MemoryStream memStream = new();
-
-								using (HttpClient client = new())
-								{
-									var response = await client.GetAsync(game.Images.Banners.B1);
-									if (response is { StatusCode: HttpStatusCode.OK })
-									{
-										using var stream = await response.Content.ReadAsStreamAsync();
-										await stream.CopyToAsync(memStream);
-										memStream.Position = 0;
-									}
-								}
-
-								MemoryStream ms = new();
-								new Bitmap(memStream).Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-								BitmapImage image = new();
-								image.BeginInit();
-								ms.Seek(0, SeekOrigin.Begin);
-								image.StreamSource = ms;
-								image.EndInit();
-
-								ImageBrush img = (ImageBrush)obj.FindName("image" + dl);
-								img.ImageSource = image;
-
-                                DoubleAnimation da = new DoubleAnimation
-                                {
-                                    From = 0.0,
-                                    To = 1.0,
-                                    Duration = new Duration(TimeSpan.FromSeconds(.25))
-                                };
-                                obj.BeginAnimation(OpacityProperty, da);
-
-                                Data.bitSwarm.Open(game.Infohash);
-                                Data.bitSwarm.Start();
-                            });
-						}
-					}
-				});
-			}
-			if(type == 1)
-			{
-				
-			}
-			if (type == 2)
-			{
-				Dispatcher.Invoke(async () =>
-				{
-					foreach (var game in Data.games)
-					{
-						if (game.ID == gameID)
-						{
-							await Dispatcher.Invoke(async () =>
-							{
-								Label gameName = (Label)obj.FindName("gameName" + dl);
-								gameName.Content = game.Name;
-
-								MemoryStream memStream = new();
-
-								using (HttpClient client = new())
-								{
-									var response = await client.GetAsync(game.Images.Banners.B1);
-									if (response is { StatusCode: HttpStatusCode.OK })
-									{
-										using var stream = await response.Content.ReadAsStreamAsync();
-										await stream.CopyToAsync(memStream);
-										memStream.Position = 0;
-									}
-								}
-
-								MemoryStream ms = new();
-								new Bitmap(memStream).Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-								BitmapImage image = new();
-								image.BeginInit();
-								ms.Seek(0, SeekOrigin.Begin);
-								image.StreamSource = ms;
-								image.EndInit();
-
-								ImageBrush img = (ImageBrush)obj.FindName("image" + dl);
-								img.ImageSource = image;
-
-								gameInfo0.Content = "Uninstalling";
-
-								DoubleAnimation da = new DoubleAnimation
-								{
-									From = 0.0,
-									To = 1.0,
-									Duration = new Duration(TimeSpan.FromSeconds(.25))
-								};
-								obj.BeginAnimation(OpacityProperty, da);
-
-								if (Process.GetProcessesByName(game.Filename).Length > 0)
-								{
-									Process[] processes = Process.GetProcesses();
-									int i = 0;
-									for (var p = 0; i < processes.Length; i++)
-									{
-										if (processes[p].ProcessName == Data.games[i].Filename)
-										{
-											processes[p].Kill();
-										}
-									}
-								}
-
-								await Task.Factory.StartNew(path => Directory.Delete((string)path, true), Path.Combine(Properties.Settings.Default.Directory, @"\", game.Name));
-
-								DoubleAnimation da1 = new DoubleAnimation
-								{
-									From = 1.0,
-									To = 0.0,
-									Duration = new Duration(TimeSpan.FromSeconds(.25))
-								};
-								obj.BeginAnimation(OpacityProperty, da1);
-							});
-						}
-					}
-				});
+					From = 0.0,
+					To = 1.0,
+					Duration = new Duration(TimeSpan.FromSeconds(.25))
+				};
+				da.Completed += (sender, e) => DLCompleted(sender, e, int.Parse(row[(int)DownloadTable.ID].ToString()));
+				Download0.BeginAnimation(OpacityProperty, da);
+				Data.bitswarm[int.Parse(row[(int)DownloadTable.ID].ToString())].Dispose();
 			}
 		}
 
-		private static string FormatBytes(long bytes)
+		private void DLCompleted(object sender, EventArgs e, int id)
 		{
-			string[] suffix = { "B", "KB", "MB", "GB", "TB" };
-			int i;
-			double dblSByte = bytes;
-
-			for (i = 0; i < suffix.Length && bytes >= 1024; i++, bytes /= 1024)
-			{
-				dblSByte = bytes / 1024.0;
-			}
-
-			return String.Format("{0:0.##} {1}", dblSByte, suffix[i]);
+			var canvas = (FrameworkElement)FindName($"Download{id}");
+			canvas.Visibility = Visibility.Hidden;
 		}
 
-		private void downloadClosed(object sender, RoutedEventArgs e)
-		{
-			Data.bitSwarm.Dispose();
-		}
-
-		private void torrentChanged(object source, BitSwarm.StatusChangedArgs e)
+		private void PauseDownload(object sender, MouseButtonEventArgs e)
 		{
 			Dispatcher.Invoke(() =>
 			{
-				if (e.Status == 0)
+				var element = (FrameworkElement)sender;
+				var id = Int16.Parse(Regex.Match(element.Name, @"\d+").Value);
+
+				var row = Data.dltable.Select($"id = '{id}'")[0];
+
+				var pause = (ModernWpf.Controls.FontIcon)FindName($"Pause{row[(int)DownloadTable.DLID]}");
+
+				if (bool.Parse(row[(int)DownloadTable.Paused].ToString()) == true)
 				{
-					gameInfo0.Content = "Extracting";
-					downloadProcentage0.Visibility = Visibility.Hidden;
-					downloadEta0.Visibility = Visibility.Hidden;
-					downloadSpeed0.Visibility = Visibility.Hidden;
-					progressBar0.IsIndeterminate = true;
-				}
-				if (e.Status == 1)
-				{
-					gameInfo0.Content = "Stopped";
-					downloadProcentage0.Visibility = Visibility.Hidden;
-					progressBar0.Value = 0;
-				}
-				if (e.Status == 2)
-				{
-					gameInfo0.Content = "Error";
-					downloadProcentage0.Visibility = Visibility.Hidden;
-					progressBar0.Value = 0;
-				}
-			});
-		}
-
-		private void torrentUpdated(object source, BitSwarm.StatsUpdatedArgs e)
-		{
-			Dispatcher.Invoke(() =>
-			{
-				var window = Application.Current.MainWindow;
-
-				(window as Main).Taskbar.ProgressState = System.Windows.Shell.TaskbarItemProgressState.Normal;
-
-				downloadEta0.Content = TimeSpan.FromSeconds((e.Stats.ETA + e.Stats.AvgETA) / 2).ToString(@"mm\:ss") + " left";
-				downloadProcentage0.Content = e.Stats.Progress + "%";
-				downloadSpeed0.Content = FormatBytes(e.Stats.DownRate) + "/s";
-				progressBar0.IsIndeterminate = false;
-				progressBar0.Value = e.Stats.Progress;
-
-				(window as Main).Taskbar.ProgressValue = decimal.ToDouble((decimal)e.Stats.Progress / 100);
-
-				gameInfo0.Content = "Downloading";
-
-				progressBar0.Visibility = Visibility.Visible;
-				downloadProcentage0.Visibility = Visibility.Visible;
-				downloadEta0.Visibility = Visibility.Visible;
-				downloadSpeed0.Visibility = Visibility.Visible;
-			});
-		}
-
-		private void pauseDownload(object sender, System.Windows.Input.MouseButtonEventArgs e)
-		{
-			Dispatcher.Invoke(() =>
-			{
-				if (Data.paused[0] == true)
-				{
-					Data.paused[0] = false;
+					row[(int)DownloadTable.Paused] = false;
 					pause.Glyph = "&#xe768;";
-					Data.bitSwarm.Start();
+					Data.bitswarm[int.Parse(row[(int)DownloadTable.ID].ToString())].Start();
 				}
 				else
 				{
-					Data.paused[0] = true;
+					row[(int)DownloadTable.Paused] = true;
 					pause.Glyph = "&#xe71a;";
-					Data.bitSwarm.Pause();
+					Data.bitswarm[int.Parse(row[(int)DownloadTable.ID].ToString())].Pause();
 				}
 			});
 		}
 
-		private void stopDownload(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		private void StopDownload(object sender, MouseButtonEventArgs e)
 		{
-			DoubleAnimation da = new DoubleAnimation
+			var element = (FrameworkElement)sender;
+			var id = Int16.Parse(Regex.Match(element.Name, @"\d+").Value);
+
+			var row = Data.dltable.Select($"id = `{id}`")[0];
+
+			var da = new DoubleAnimation
 			{
 				From = 0.0,
 				To = 1.0,
 				Duration = new Duration(TimeSpan.FromSeconds(.25))
 			};
-			da.Completed += StopCompleted;
+
+			da.Completed += (sender, e) => StopCompleted(sender, e, id);
 			Download0.BeginAnimation(OpacityProperty, da);
-			Data.bitSwarm.Dispose();
+			Data.bitswarm[int.Parse(row[(int)DownloadTable.ID].ToString())].Dispose();
 		}
 
-		private void StopCompleted(object sender, EventArgs e)
+		private void StopCompleted(object sender, EventArgs e, int id)
 		{
-			Download0.Visibility = Visibility.Hidden;
+			var canvas = (FrameworkElement)FindName($"Download{id}");
+			canvas.Visibility = Visibility.Hidden;
 		}
 	}
 }

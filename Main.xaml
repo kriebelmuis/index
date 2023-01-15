@@ -1,11 +1,9 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        xmlns:tb="http://www.hardcodet.net/taskbar"
         
-        xmlns:ui1="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="Index.Main"
+        x:Class="Index.Main"
         
         Title="Index"
         MinHeight="500"
@@ -31,86 +29,90 @@
             Height="55"
             VerticalAlignment="Top" 
             MouseLeftButtonDown="dragWindow"/>
-        <StackPanel 
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Width="215">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <StackPanel
             x:Name="closeButton"
-            HorizontalAlignment="Right" 
-            Height="55" 
-            Margin="658,0,0,0"
+            HorizontalAlignment="Right"
+            Height="55"
+            Margin="0,0,0,0"
             Background="Transparent"
-            VerticalAlignment="Top" 
+            VerticalAlignment="Top"
             Width="70"
-            PreviewMouseLeftButtonDown="exitClick" Cursor="Hand">
-            <StackPanel.Triggers>
-                <EventTrigger
+            PreviewMouseLeftButtonDown="exitClick" Cursor="Hand" Grid.RowSpan="2">
+                <StackPanel.Triggers>
+                    <EventTrigger
 			    		RoutedEvent="UIElement.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard
+                        <BeginStoryboard>
+                            <Storyboard
 				    		Storyboard.TargetProperty="Background.Color">
-                            <ColorAnimation
+                                <ColorAnimation
 								Duration="0:0:0.1"
 					    		To="#CCFF0000" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger
 		    		RoutedEvent="UIElement.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard
+                        <BeginStoryboard>
+                            <Storyboard
 							Storyboard.TargetProperty="Background.Color">
-                            <ColorAnimation
+                                <ColorAnimation
 							    Duration="0:0:0.1"
 							    To="#00FF0000" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </StackPanel.Triggers>
-            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </StackPanel.Triggers>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					x:Name="path274"
 					Stroke="#FFFFFF"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Margin="-5,15,0,0">
-                <Path.Data>
-                    <PathGeometry
+                    <Path.Data>
+                        <PathGeometry
 							Figures="M17 7L7 17M7 7L17 17"
 							FillRule="NonZero" />
-                </Path.Data>
-            </Path>
-        </StackPanel>
-        <StackPanel 
+                    </Path.Data>
+                </Path>
+            </StackPanel>
+            <StackPanel
             x:Name="maximizeButton"
-            HorizontalAlignment="Right" 
-            Height="55" 
-            Margin="0,0,70,0" 
+            HorizontalAlignment="Center"
+            Height="55"
             Background="Transparent"
-            VerticalAlignment="Top" 
+            VerticalAlignment="Top"
             Width="70"
-            PreviewMouseLeftButtonDown="maximizeClick" Cursor="Hand">
-            <StackPanel.Triggers>
-                <EventTrigger
+            PreviewMouseLeftButtonDown="maximizeClick" Cursor="Hand" Grid.RowSpan="2">
+                <StackPanel.Triggers>
+                    <EventTrigger
 					RoutedEvent="UIElement.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard
+                        <BeginStoryboard>
+                            <Storyboard
 							Storyboard.TargetProperty="Background.Color">
-                            <ColorAnimation
+                                <ColorAnimation
 								Duration="0:0:0.1"
 								To="#55777777" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger
 					RoutedEvent="UIElement.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard
+                        <BeginStoryboard>
+                            <Storyboard
 				    			Storyboard.TargetProperty="Background.Color">
-                            <ColorAnimation
+                                <ColorAnimation
 					    		Duration="0:0:0.1"
 								To="#00777777" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </StackPanel.Triggers>
-            <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </StackPanel.Triggers>
+                <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 							x:Name="rect354"
 							Width="10"
 							Height="10"
@@ -118,53 +120,54 @@
                             VerticalAlignment="Center"
                             Margin="0,22,0,0"
 							Stroke="White" />
-        </StackPanel>
-        <StackPanel 
+            </StackPanel>
+            <StackPanel
             x:Name="minimizeButton"
-            HorizontalAlignment="Right"
+            HorizontalAlignment="Left"
             Height="55"
-            Margin="0,0,140,0" 
+            Margin="0,0,00,0"
             Background="Transparent"
             VerticalAlignment="Top"
             Width="70"
-            PreviewMouseLeftButtonDown="minimizeClick" Cursor="Hand">
-            <StackPanel.Triggers>
-                <EventTrigger
+            PreviewMouseLeftButtonDown="minimizeClick" Cursor="Hand" Grid.RowSpan="2">
+                <StackPanel.Triggers>
+                    <EventTrigger
 					RoutedEvent="UIElement.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard
+                        <BeginStoryboard>
+                            <Storyboard
 							Storyboard.TargetProperty="Background.Color">
-                            <ColorAnimation
+                                <ColorAnimation
 								Duration="0:0:0.1"
 								To="#55777777" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger
 					RoutedEvent="UIElement.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard
+                        <BeginStoryboard>
+                            <Storyboard
 							Storyboard.TargetProperty="Background.Color">
-                            <ColorAnimation
+                                <ColorAnimation
 			    				Duration="0:0:0.1"
 								To="#00777777" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </StackPanel.Triggers>
-            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </StackPanel.Triggers>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					x:Name="path85"
 					Fill="#ffffff"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Margin="-5,17,0,0">
-                <Path.Data>
-                    <PathGeometry
+                    <Path.Data>
+                        <PathGeometry
 			    			Figures="M17 12H7V11H17V12Z"
 							FillRule="NonZero" />
-                </Path.Data>
-            </Path>
-        </StackPanel>
+                    </Path.Data>
+                </Path>
+            </StackPanel>
+        </Grid>
         <StackPanel 
             x:Name="homeButton"
             HorizontalAlignment="Left"
@@ -361,6 +364,11 @@
             Opacity="1"
             NavigationUIVisibility="Hidden" 
             Margin="0,55,0,0"/>
+        <Frame x:Name="Game"
+            Visibility="Hidden"
+            Opacity="0"
+            NavigationUIVisibility="Hidden"
+            Margin="0,55,0,0"/>
         <Frame x:Name="Library"
             Source="Library.xaml" 
             Visibility="Hidden"
@@ -368,18 +376,13 @@
             NavigationUIVisibility="Hidden" 
             Margin="0,55,0,0"/>
         <Frame x:Name="Downloads"
+            Source="Downloads.xaml"
             Visibility="Hidden"
             Opacity="0"
             NavigationUIVisibility="Hidden" 
             Margin="0,55,0,0"/>
         <Frame x:Name="Settings"
             Source="Settings.xaml" 
-            Visibility="Hidden"
-            Opacity="0"
-            NavigationUIVisibility="Hidden" 
-            Margin="0,55,0,0"/>
-        <Frame x:Name="Game"
-            Source="Clear.xaml" 
             Visibility="Hidden"
             Opacity="0"
             NavigationUIVisibility="Hidden"

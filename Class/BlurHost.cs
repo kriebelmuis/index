@@ -64,11 +64,10 @@ namespace Index.Class
         {
             Loaded += OnLoaded;
 
-            // TODO::Update Opacity of VisualBrush when property BlurOpacity changes
-            this.BlurDecoratorBrush = new VisualBrush()
+            BlurDecoratorBrush = new VisualBrush()
             {
                 ViewboxUnits = BrushMappingMode.Absolute,
-                Opacity = this.BlurOpacity
+                Opacity = BlurOpacity
             };
         }
 
@@ -79,12 +78,10 @@ namespace Index.Class
                 return;
             }
 
-            // Get the section of the image where the BlurHost element is located
             Rect elementBounds = TransformToVisual(rootContainer)
-              .TransformBounds(new Rect(this.RenderSize));
+              .TransformBounds(new Rect(RenderSize));
 
-            // Use the section bounds to actually "cut out" the image tile 
-            this.BlurDecoratorBrush.Viewbox = elementBounds;
+            BlurDecoratorBrush.Viewbox = elementBounds;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -100,9 +97,10 @@ namespace Index.Class
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            this.PART_BlurDecorator = GetTemplateChild("PART_BlurDecorator") as Border;
-            this.PART_BlurDecorator.Effect = this.BlurEffect;
-            this.PART_BlurDecorator.Background = this.BlurDecoratorBrush;
+
+            PART_BlurDecorator = GetTemplateChild("PART_BlurDecorator") as Border;
+            PART_BlurDecorator.Effect = BlurEffect;
+            PART_BlurDecorator.Background = BlurDecoratorBrush;
         }
 
         private static void OnBlurBackgroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

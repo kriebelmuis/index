@@ -8,12 +8,12 @@
     <Setting Name="Directory" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files (x86)</Value>
     </Setting>
+    <Setting Name="Throttle" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="Installed" Type="System.Int32[]" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfInt xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" /&gt;</Value>
-    </Setting>
-    <Setting Name="Throttle" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

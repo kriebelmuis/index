@@ -20,6 +20,7 @@ namespace Index
                 }
                 if (Properties.Settings.Default.Theme == "Light")
                 {
+
                     this.Light.IsSelected = true;
                     this.Dark.IsSelected = false;
                     Wpf.Ui.Appearance.Accent.Apply(SystemParameters.WindowGlassColor, Wpf.Ui.Appearance.ThemeType.Light, true);
@@ -27,11 +28,11 @@ namespace Index
 
                 if (string.IsNullOrWhiteSpace(Properties.Settings.Default.Directory))
                 {
-                    this.DirectoryText.Content = "Not set";
+                    DirectoryText.Content = "Not set";
                 }
                 else
                 {
-                    this.DirectoryText.Content = Properties.Settings.Default.Directory;
+                    DirectoryText.Content = Properties.Settings.Default.Directory;
                 }
 
                 if (string.IsNullOrWhiteSpace(Properties.Settings.Default.Throttle.ToString()) == false && Properties.Settings.Default.Throttle != 0)
@@ -45,14 +46,14 @@ namespace Index
 
         private void SetFolder(object sender, MouseButtonEventArgs e)
         {
-            this.Dispatcher.Invoke(() =>
+            Dispatcher.Invoke(() =>
             {
                 using var fbd = new System.Windows.Forms.FolderBrowserDialog();
-                System.Windows.Forms.DialogResult result = fbd.ShowDialog();
+                var result = fbd.ShowDialog();
 
                 if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    this.DirectoryText.Content = fbd.SelectedPath;
+                    DirectoryText.Content = fbd.SelectedPath;
 
                     Properties.Settings.Default.Directory = fbd.SelectedPath;
                     Properties.Settings.Default.Save();

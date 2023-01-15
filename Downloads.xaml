@@ -11,8 +11,7 @@
         Height="445"
         Width="830"
         Background="#111213"
-        RenderOptions.BitmapScalingMode="HighQuality"
-        Unloaded="downloadClosed">
+        RenderOptions.BitmapScalingMode="HighQuality">
     <Grid x:Name="Window">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -23,24 +22,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Canvas x:Name="Download0" Height="120" Width="810" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0" Grid.Row="0">
-            <Rectangle 
-                Height="120" 
-                HorizontalAlignment="Center" VerticalAlignment="Center"
-                Width="810" Fill="Transparent">
-                <Rectangle.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Stop download"/>
-                        <MenuItem Header="Pause download" />
-                    </ContextMenu>
-                </Rectangle.ContextMenu>
-                <Rectangle.OpacityMask>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Offset="1"/>
-                    </LinearGradientBrush>
-                </Rectangle.OpacityMask>
-            </Rectangle>
-            <Rectangle x:Name="background0" 
+            <Rectangle x:Name="Background0"
                 Height="120" VerticalAlignment="Center" HorizontalAlignment="Center"
                 Width="810" RadiusX="4" RadiusY="4">
                 <Rectangle.ContextMenu>
@@ -56,10 +38,10 @@
                     </LinearGradientBrush>
                 </Rectangle.OpacityMask>
                 <Rectangle.Fill>
-                    <ImageBrush x:Name="image0" ImageSource="resources/index.jpg"  Stretch="UniformToFill"/>
+                    <ImageBrush x:Name="Image0" ImageSource="resources/index.jpg" Stretch="UniformToFill"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <ui:ProgressBar x:Name="progressBar0" 
+            <ui:ProgressBar x:Name="Bar0"
                 IsIndeterminate="True" 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
@@ -70,21 +52,21 @@
                 BorderBrush="White" 
                 Foreground="#005fb8" 
                 Background="Transparent"/>
-            <Label x:Name="gameName0"
-                Content="Name"
+            <Label x:Name="Name0"
+                Content="GameName"
                 HorizontalAlignment="Left"
                 Margin="5,5,0,0" 
                 VerticalAlignment="Top" 
                 HorizontalContentAlignment="Left"
                 Width="Auto" FontFamily="Circular Std Bold" FontSize="35" Foreground="White"/>
-            <Label x:Name="gameInfo0"
+            <Label x:Name="Info0"
                 Content="Preparing"
                 HorizontalAlignment="Left"
                 Margin="5,50,0,0" 
                 VerticalAlignment="Top" 
                 HorizontalContentAlignment="Left"
                 Width="Auto" FontFamily="Circular Std Book" FontSize="18" Foreground="White"/>
-            <Label x:Name="downloadProcentage0"
+            <Label x:Name="Procentage0"
                 Content="0%"
                 Canvas.Bottom="10"
                 Canvas.Left="5"
@@ -94,7 +76,7 @@
                 FontSize="18" 
                 Visibility="Hidden"
                 Foreground="White"/>
-            <Label x:Name="downloadEta0"
+            <Label x:Name="Eta0"
                 Content="00:00:00 left"
                 Canvas.Top="7"
                 Canvas.Right="7"
@@ -103,7 +85,7 @@
                 FontSize="24" 
                 Visibility="Hidden"
                 Foreground="White"/>
-            <Label x:Name="downloadSpeed0"
+            <Label x:Name="Speed0"
                 Content="0 mb/s"
                 Canvas.Right="7"
                 Canvas.Top="40"
@@ -113,14 +95,14 @@
                 Visibility="Hidden"
                 Foreground="White"/>
             <Button 
-            x:Name="pauseButton0" 
+            x:Name="Pause0"
             Height="35" 
             Background="Transparent"
             VerticalAlignment="Bottom" 
             Canvas.Bottom="15"
             Canvas.Right="50"
             Width="35" 
-            Cursor="Hand" PreviewMouseLeftButtonDown="pauseDownload" HorizontalAlignment="Right">
+            Cursor="Hand" HorizontalAlignment="Right">
                 <Button.Triggers>
                     <EventTrigger
 					RoutedEvent="UIElement.MouseEnter">
@@ -145,16 +127,16 @@
                         </BeginStoryboard>
                     </EventTrigger>
                 </Button.Triggers>
-                <ui:FontIcon x:Name="pause" Glyph="&#xe769;" FontFamily="Segoe Fluent Icons" FontSize="13" Foreground="White" Height="35" Width="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ui:FontIcon x:Name="pause0" Glyph="&#xe769;" FontFamily="Segoe Fluent Icons" FontSize="13" Foreground="White" Height="35" Width="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Button>
-            <Button 
-            x:Name="stopButton0" 
+            <Button
+            x:Name="Stop0"
             Height="35" 
             Background="Transparent"
             Width="35" 
             Canvas.Bottom="15"
             Canvas.Right="7"
-            Cursor="Hand" PreviewMouseLeftButtonDown="stopDownload" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            Cursor="Hand" PreviewMouseLeftButtonDown="StopDownload" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <Button.Triggers>
                     <EventTrigger
 					RoutedEvent="UIElement.MouseEnter">
@@ -179,7 +161,7 @@
                         </BeginStoryboard>
                     </EventTrigger>
                 </Button.Triggers>
-                <ui:FontIcon x:Name="stop" Glyph="&#xe71a;" FontFamily="Segoe Fluent Icons" FontSize="13" Foreground="White" Height="35" Width="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ui:FontIcon x:Name="stop0" Glyph="&#xe71a;" FontFamily="Segoe Fluent Icons" FontSize="13" Foreground="White" Height="35" Width="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Button>
         </Canvas>
     </Grid>

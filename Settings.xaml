@@ -28,6 +28,7 @@
                     Background="Transparent"
                 PreviewMouseUp="SetFolder"
                 ToolTip="Browse">
+                <ui:FontIcon Height="45" Width="45" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Glyph="&#xe8b7;" FontFamily="Segoe Fluent Icons" Foreground="White"/>
             </Button>
             <Label x:Name="DirectoryText" Content="Not set" Margin="50,0,10,0" VerticalAlignment="Center" FontFamily="Product Sans" Foreground="White" FontSize="18"/>
         </Grid>

@@ -20,20 +20,23 @@ namespace Index.Class
             set { _blurOpacity = (uint)value; EnableBlur(); }
         }
 
-        private uint _blurBackgroundColor = 0x990000;
+        private readonly uint _blurBackgroundColor = 0x990000;
 
-        private Window window { get; set; }
-        private AccentState accentState { get; set; }
+        private Window window
+        {
+            get; set;
+        }
+        private AccentState accentState
+        {
+            get; set;
+        }
         internal void EnableBlur()
         {
             var windowHelper = new WindowInteropHelper(window);
             var accent = new AccentPolicy();
 
-
-            //To  enable blur the image behind the window
             accent.AccentState = accentState;
-            accent.GradientColor = (_blurOpacity << 24) | (_blurBackgroundColor & 0xFFFFFF); /*(White mask 0xFFFFFF)*/
-
+            accent.GradientColor = (_blurOpacity << 24) | (_blurBackgroundColor & 0xFFFFFF);
 
             var accentStructSize = Marshal.SizeOf(accent);
 
@@ -50,7 +53,6 @@ namespace Index.Class
             Marshal.FreeHGlobal(accentPtr);
         }
 
-        //to call blur in our desired window
         internal WindowBlureffect(Window window, AccentState accentState)
         {
             this.window = window;
