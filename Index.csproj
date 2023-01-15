@@ -96,9 +96,6 @@
     <Compile Include="Class\BlurHost.cs" />
     <Compile Include="Class\AcrylicBlur.cs" />
     <Compile Include="Class\Blureffect.cs" />
-    <Compile Include="Clear.xaml.cs">
-      <DependentUpon>Clear.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Data.cs" />
     <Compile Include="KeyAuth.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -110,10 +107,6 @@
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Page Include="Auth.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Clear.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

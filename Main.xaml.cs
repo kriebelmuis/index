@@ -75,7 +75,7 @@ namespace Index
 
 		private void downloadClick(object sender, MouseButtonEventArgs e)
 		{
-			if (Data.vis != "Downloads")
+			if (Data.visible != "Downloads")
 			{
 				var foo = (Frame)FindName(Data.visible);
 				DoubleAnimation da = new DoubleAnimation

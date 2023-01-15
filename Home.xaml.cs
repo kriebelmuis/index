@@ -1,17 +1,8 @@
 ﻿using System;
-<<<<<<< HEAD
 using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
-=======
-using System.Drawing;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
->>>>>>> b6dd1929d093d3c5b1e5ed7acaec71f9eb586773
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,10 +10,7 @@ using System.Windows.Markup;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Xml;
-<<<<<<< HEAD
 using ModernWpf;
-=======
->>>>>>> b6dd1929d093d3c5b1e5ed7acaec71f9eb586773
 
 namespace Index
 {

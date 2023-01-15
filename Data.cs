@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using SuRGeoNix.BitSwarmLib;
-<<<<<<< HEAD
 
 using System;
 using System.IO;
