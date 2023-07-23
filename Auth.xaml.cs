@@ -36,7 +36,7 @@ namespace Index
         public static api KeyAuthApp = new(
             name: "index",
             ownerid: "K6t7JKnr3q",
-            secret: "b7f43ebcc25ddcd5b8f53eec714b88e77375c46dee65053da2752547647a89af",
+            secret: "", // life is... roblox
             version: "1.0"
         );
 
