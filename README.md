@@ -1,3 +1,6 @@
+# 🗒️ ARCHIVED NOTE
+Index C# has been superseded by [IndexJS](https://github.com/072dev/indexjs) made in Electron
+
 # ⚠️ WARNING
 This project NOT completed and it'll take a while before all the features are added.
 
